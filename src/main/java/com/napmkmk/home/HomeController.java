@@ -1,5 +1,7 @@
 package com.napmkmk.home;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,23 +28,33 @@ public class HomeController {
 	@RequestMapping( value =  "/joinOk")
 	public String join(HttpServletRequest request) {
 		 
-		 String id = request.getParameter("id");
+	
 		 String name = request.getParameter("name");
 		 int age = Integer.parseInt(request.getParameter("age")); //int 로 형변환
 		 int grade = Integer.parseInt(request.getParameter("grade"));
 		 String etc = request.getParameter("etc");
 		 
 		 MemberDto memberDto = new MemberDto();
-		 memberDto.setId(id);
+		 
 		 memberDto.setName(name);
 		 memberDto.setAge(age);
 		 memberDto.setGrade(grade);
-		 memberDto.setId(etc);
+		 memberDto.setEtc(etc);
 		
 		 MemberDto mDto = memberRepository.save(memberDto);
 		 System.out.println(mDto.toString());
 		 
 		 
 		return "joinOk" ;
+	}
+	
+	@RequestMapping(value = "/search")
+	public String search() {
+		List<MemberDto> memberDtos =memberRepository.findByName("홍길동");
+		
+		for(MemberDto memberDto : memberDtos) {
+			System.out.println(memberDto.toString());
+		}
+		return "searchResult";
 	}
 }
