@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.napmkmk.home.dto.MemberDto;
@@ -26,7 +27,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping( value =  "/joinOk")
-	public String join(HttpServletRequest request) {
+	public String join(HttpServletRequest request, Model model) {
 		 
 	
 		 String name = request.getParameter("name");
@@ -41,9 +42,10 @@ public class HomeController {
 		 memberDto.setGrade(grade);
 		 memberDto.setEtc(etc);
 		
-		 MemberDto mDto = memberRepository.save(memberDto);
+		 MemberDto mDto = memberRepository.save(memberDto); //save INSERT
 		 System.out.println(mDto.toString());
 		 
+		 model.addAttribute("mDto",mDto);
 		 
 		return "joinOk" ;
 	}

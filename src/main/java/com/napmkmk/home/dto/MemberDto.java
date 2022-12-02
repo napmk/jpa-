@@ -23,10 +23,10 @@ public class MemberDto {
 
 		@Id //매핑된 테이블의 기본키로 해당 속성을 설정
 		@Column(name = "hakbun")//테이블의 필드와 매핑
-		@GeneratedValue(strategy = GenerationType.AUTO )// 기본키 생성 전략
+		@GeneratedValue(strategy = GenerationType.AUTO )// 기본키 생성 전략 자동으로생성  db뭐쓸지 모를때 : AUTO
 		private Long hakbun; //학번 기본키
 		
-		@Column(name = "name" , nullable = false)//nullable ->null값허용 여부
+		@Column(name = "name" , nullable = false, length = 20)//nullable ->null값허용 여부
 		private String name; //이름
 		
 		@Column(name = "age")
@@ -35,7 +35,7 @@ public class MemberDto {
 		@Column(name = "grade")
 		private int grade; //학년
 		
-		@Column(name = "etc", length = 50)
+		@Column(name = "etc", length = 50) //length 안쓰면 기본 255자
 		private String etc; //기타 학생 비고 설명
 		
 }
