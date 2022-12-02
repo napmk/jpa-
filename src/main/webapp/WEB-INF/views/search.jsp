@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-안녕
+	<h3>회원이름검색</h3>
+	<form action="searchOk">
+		<input type="text" name="searchName" >
+		<input type="submit" value="회원검색" >
+	</form>
 </body>
 </html>
